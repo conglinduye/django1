@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{%block head%}
+<script>
+    $(function () {
+        $('form').submit(function () {
+            error_name = true;
+            error_password = true;
+            $('#username').blur()
+            $('#pwd').blur()
+            return error_name && error_password
+
+        });
+       $('#username').blur(function(){
+           len = $('#user_name').val().length;
+            if(len<5||len>20)
+            {
+                $('#user_name').next().html('请输入5-20个字符的用户名')
+                $('#user_name').next().show();
+                error_name = true;
+            }
+            else
+            {
+                $('#user_name').next().hide();
+                error_name = false;
+            }
+       });
+        $('#pwd').blur(function(){
+            len = $('#pwd').val().length;
+            if(len<8||len>20)
+            {
+                $('#pwd').next().html('密码最少8位，最长20位')
+                $('#pwd').next().show();
+                error_password = true;
+            }
+            else
+            {
+                $('#pwd').next().hide();
+                error_password = false;
+            }
+        })
+    })
+</script>
+{%endblock head%}
+
+    {%block body%}
+	<div class="login_top clearfix">
+		<a href="../book/index.html" class="login_logo"><img src="/static/images/logo02.png"></a>
+	</div>
+
+	<div class="login_form_bg">
+		<div class="login_form_wrap clearfix">
+			<div class="login_banner fl"></div>
+			<div class="slogan fl">日夜兼程 · 急速送达</div>
+			<div class="login_form fr">
+				<div class="login_title clearfix">
+					<h1>用户登录</h1>
+					<a href="/register/">立即注册</a>
+				</div>
+				<div class="form_input">
+					<form method="post" action="/login_handle/">
+                        {%csrf_token%}
+						<input type="text" name="username" id="username" class="name_input" placeholder="请输入用户名">
+						<div class="user_error"></div>
+						<input type="password" name="pwd" id="pwd" class="pass_input" placeholder="请输入密码">
+						<div class="pwd_error"></div>
+						<div class="more_input clearfix">
+							<input type="checkbox" name="ujz" value="1" id="ujz" checked="checked">
+							<label>记住用户名</label
+							<a href="#">忘记密码</a>
+						</div>
+						<input type="submit" name="" value="登录" class="input_submit">
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+{%endblock body%}
