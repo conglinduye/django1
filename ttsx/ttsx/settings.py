@@ -38,6 +38,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'booktest',#注册应用
+    'bookgoods',#注册商品信息应用
+    'tinymce',#注册副文本应用
 )
 
 MIDDLEWARE_CLASSES = (
@@ -107,3 +109,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS=[os.path.join(BASE_DIR,'static')] #设置静态文件路径
+MEDIA_ROOT = os.path.join(BASE_DIR,'static')  #设置文件上传路径
+#副文本配置信息
+TINYMCE_DEFAULT_CONFIG = {
+    'theme': 'advanced',
+    'width': 600,
+    'height': 400,
+}

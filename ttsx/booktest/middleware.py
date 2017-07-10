@@ -2,7 +2,7 @@
 from django.http import HttpResponse,HttpRequest
 
 class UrlPathMiddleware:
-    def process_request(self,request):
+    def process_view(self,request,view_func,view_args,view_kwargs):
         path = request.get_full_path()
         path1 = request.path
         if path1 not in ['/login/',

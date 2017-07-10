@@ -18,5 +18,7 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^',include('booktest.urls')),
+    url(r'^',include('booktest.urls')),#用户登陆及用户中心
+    url(r'^goods/',include('bookgoods.urls')),#商品信息
+    url(r'^tinymce/', include('tinymce.urls')),#副文本url
 ]
