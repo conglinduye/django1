@@ -19,7 +19,7 @@ class GoodsInfo(models.Model):
     gtitle = models.CharField(max_length=20) #商品名称
     gpic = models.ImageField(upload_to='goods/') #商品图片
     gprice = models.DecimalField(max_digits=5,decimal_places=2) #商品价格，保留两位小数
-    gclick = models.ImageField()# 商品点击量
+    gclick = models.IntegerField()# 商品点击量
     gunit = models.CharField(max_length=10) #单位
     isdelete = models.BooleanField(default=False)#是否删除
     gsubtitle = models.CharField(max_length=200)# 商品简介

@@ -1,3 +1,4 @@
+#coding=utf-8
 """ttsx URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -21,4 +22,5 @@ urlpatterns = [
     url(r'^',include('booktest.urls')),#用户登陆及用户中心
     url(r'^goods/',include('bookgoods.urls')),#商品信息
     url(r'^tinymce/', include('tinymce.urls')),#副文本url
+    url(r'^search/', include('haystack.urls')),#全文检索配置
 ]

@@ -5,6 +5,7 @@ from hashlib import sha1
 from django.http import JsonResponse,HttpResponse
 import datetime
 from . import user_decorators  #导入装饰器函数
+from bookgoods.models import *
 
 # Create your views here.
 
@@ -68,7 +69,7 @@ def login_handle(request):
             context['error_pwd']='输入密码错误！'
             return render(request,'booktest/login.html',context)
         else:
-            response = redirect(request.session['url_path1'])
+            response = redirect(request.session.get('url_path1','/goods/index/'))
             request.session['uid']=result[0].id#获取session中的id值
             request.session['uname']=result[0].uname#获取session中的uname值
 
@@ -81,10 +82,17 @@ def login_handle(request):
 #用户中心-个人信息页面_info
 @user_decorators.user_islogin
 def user_center_info(request):
+    #查询当前用户对象
     user = UserInfo.objects.filter(pk=request.session['uid'])
     users = user[0]
     print(user)
-    return render(request,'booktest/user_center_info.html',{'user':users,'title':'用户中心-个人信息'})
+    #查询最近浏览
+    ids = request.COOKIES.get('goods_ids','').split(',')[:-1]
+    glist=[]
+    for id in ids:
+        glist.append(GoodsInfo.objects.get(id=id))
+    print(glist)
+    return render(request,'booktest/user_center_info.html',{'user':users,'title':'用户中心-个人信息','glist':glist})
 #用户中心-全部订单页面_order
 @user_decorators.user_islogin
 def user_center_order(request):

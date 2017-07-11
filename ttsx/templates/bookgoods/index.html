@@ -64,8 +64,8 @@
 			<ul class="goods_list fl">
 				{%for goods in dic.new_list%}
 				<li>
-					<h4><a href="/{{goods.id}}/">{{goods.gtitle}}</a></h4>
-					<a href="/{{goods.id}}/"><img src="/static/{{goods.gpic}}"></a>
+					<h4><a href="/goods/{{goods.id}}/">{{goods.gtitle}}</a></h4>
+					<a href="/goods/{{goods.id}}/"><img src="/static/{{goods.gpic}}"></a>
 					<div class="prize">¥{{goods.gprice}}</div>
 				</li>
 				{%endfor%}
